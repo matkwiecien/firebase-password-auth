@@ -26,7 +26,25 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "brace-style": [
+          "warn",
+          "stroustrup"
+      ],
+      "testing-library/await-async-query": "error",
+      "testing-library/await-async-utils": "error",
+      "testing-library/no-dom-import": ["error", "react"],
+      "testing-library/no-debug": "warn",
+      "testing-library/prefer-find-by": "warn",        
+      "testing-library/prefer-presence-queries": "warn",        
+      "testing-library/prefer-screen-queries": "warn",          
+      "testing-library/prefer-wait-for": "warn",
+      "jest/no-standalone-expect": [
+          "error",
+          { "additionalTestBlockFunctions": ["each.test", "cases"] }
+      ] 
+  }
   },
   "browserslist": {
     "production": [
