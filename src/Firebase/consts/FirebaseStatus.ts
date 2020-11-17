@@ -1,0 +1,9 @@
+enum FirebaseStatus {
+    AUTHENTICATING = 'AUTHENTICATING',
+    AUTHENTICATED = 'AUTHENTICATED',
+    UNAUTHENTICATED = 'UNAUTHENTICATED',
+    CHECKING = 'CHECKING',
+    ERROR = 'ERROR'
+}
+
+export default FirebaseStatus;
