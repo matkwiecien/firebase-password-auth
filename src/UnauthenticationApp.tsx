@@ -1,16 +1,12 @@
 import React from 'react';
-import { IonApp, IonContent, IonPage } from '@ionic/react';
+import { IonApp } from '@ionic/react';
 
-const UnauthenticatedApp: React.FC = () => (
+import LoginPage from './Authentication/LoginPage';
+
+const UnauthenticationApp: React.FC = () => (
     <IonApp>
-        <IonPage>
-            <IonContent>
-                <div>
-                    Sign in
-                </div>
-            </IonContent>
-        </IonPage>
-  </IonApp>
+        <LoginPage />
+    </IonApp>
 )
 
-export default UnauthenticatedApp;
+export default UnauthenticationApp;
