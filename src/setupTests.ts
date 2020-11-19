@@ -4,7 +4,9 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-import mockIonLoading from 'mocks/ionic/IonLoadingMock'
+import mockIonLoading from 'mocks/ionic/IonLoadingMock';
+import mockIonButton from 'mocks/ionic/IonButtonMock';
+
 import mockFirebase from 'Firebase/mocks/firebase'
 
 jest.mock('firebase/app', () => mockFirebase)
@@ -14,5 +16,6 @@ jest.mock('@ionic/react', () => {
     return {
         ...rest,
         IonLoading: mockIonLoading,
+        IonButton: mockIonButton,
     }
 })
