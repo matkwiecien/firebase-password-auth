@@ -3,15 +3,26 @@ import { useFormik } from 'formik';
 
 import { IonPage, IonContent, IonItem, IonInput, IonLabel, IonButton, IonLoading } from '@ionic/react';
 
+import { auth } from 'Firebase/modules/firebase';
+
+
 const LoginPage: React.FC = () => {
     const [busy, setBusy] = useState(false);
-    const { values, handleSubmit, setFieldValue } = useFormik({
+    const { errors, values, handleSubmit, setFieldValue, setFieldError } = useFormik({
         initialValues: {
             email: '',
             password: ''
         },
-        onSubmit: values => {
+        onSubmit: async (values) => {
             setBusy(true);
+
+            try {
+                await auth.signInWithEmailAndPassword(values.email, values.password);
+            }
+            catch (err) {
+                setFieldError('email', 'Inavalid username')
+            }
+
         }
     });
 
@@ -20,6 +31,11 @@ const LoginPage: React.FC = () => {
             <IonContent>
                 <h1>Sign in</h1>
                 <form onSubmit={handleSubmit}>
+                    {errors.email ?
+                        <IonItem color="danger">
+                            <IonLabel>Invalid username</IonLabel>
+                        </IonItem>
+                        : null}
                     <IonItem>
                         <IonLabel>Email: </IonLabel>
                         <IonInput
