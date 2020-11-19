@@ -1,7 +1,7 @@
 import React from 'react';
 
 const IonLoadingMock: React.FC<any> = ({...props}) => {
-    return <div>loading</div>
+    return props.isOpen ? <div>loading</div> : null;
 }
 
 export default IonLoadingMock;
