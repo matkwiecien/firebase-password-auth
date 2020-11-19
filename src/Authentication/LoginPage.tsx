@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IonPage, IonContent, IonItem, IonInput, IonLabel, IonButton } from '@ionic/react';
+import { IonPage, IonContent, IonItem, IonInput, IonLabel, IonButton, IonLoading } from '@ionic/react';
 
 const LoginPage: React.FC = () => {
     return (
@@ -10,15 +10,24 @@ const LoginPage: React.FC = () => {
                 <form>
                     <IonItem>
                         <IonLabel>Email: </IonLabel>
-                        <IonInput type='email' name='email'/>
+                        <IonInput
+                            data-testid='signin-email-input'
+                            type='email'
+                            name='email'
+                        />
                     </IonItem>
                     <IonItem>
                         <IonLabel>Password: </IonLabel>
-                        <IonInput type='password' name='password'/>
+                        <IonInput
+                            data-testid='signin-password-input'
+                            type='password'
+                            name='password'
+                        />
                     </IonItem>
                     <IonButton>Sign In</IonButton>
                 </form>
             </IonContent>
+            <IonLoading isOpen />
         </IonPage>
     )
 }
