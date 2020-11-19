@@ -37,3 +37,23 @@ test('should not display loading indicator before submit', async () => {
     //THEN
     expect(screen.queryByText('loading')).not.toBeInTheDocument();
 });
+
+test('should display error message when email is invalid', async () => {
+    //GIVEN
+    render(
+        <AuthProvider>
+            <LoginPage />
+        </AuthProvider>
+    );
+    const emailInput = screen.getByTestId('signin-email-input');
+    const passwordInput = screen.getByTestId('signin-password-input');
+    const submitButton = screen.getByRole('button', { name: /Sign In/i });
+
+    //WHEN
+    ionFireEvent.ionChange(emailInput, 'invalid@example.com')
+    ionFireEvent.ionChange(passwordInput, 'validPassword%1')
+    ionFireEvent.click(submitButton);
+
+    //THEN
+    expect(screen.queryByText('loading')).not.toBeInTheDocument();
+});
