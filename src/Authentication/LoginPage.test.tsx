@@ -8,14 +8,14 @@ import LoginPage from './LoginPage';
 test('should display loading indicator after submit sign in credentials until sign', async () => {
     //GIVEN
     render(
-      <AuthProvider>
-        <LoginPage />
-      </AuthProvider>
+        <AuthProvider>
+            <LoginPage />
+        </AuthProvider>
     );
 
     const emailInput = screen.getByTestId('signin-email-input');
     const passwordInput = screen.getByTestId('signin-password-input');
-    const submitButton = screen.getByRole('button', {name: /Sign In/i});
+    const submitButton = screen.getByRole('button', { name: /Sign In/i });
 
     //WHEN
     ionFireEvent.ionChange(emailInput, '')
@@ -23,5 +23,5 @@ test('should display loading indicator after submit sign in credentials until si
     ionFireEvent.click(submitButton);
 
     //THEN
-    expect(await screen.findByText('loading')).toBeInTheDocument();  
-  });
+    expect(await screen.findByText('loading')).toBeInTheDocument();
+});
