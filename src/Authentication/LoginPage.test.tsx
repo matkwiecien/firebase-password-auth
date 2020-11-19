@@ -25,3 +25,15 @@ test('should display loading indicator after submit sign in credentials until si
     //THEN
     expect(await screen.findByText('loading')).toBeInTheDocument();
 });
+
+test('should not display loading indicator before submit', async () => {
+    //GIVEN
+    render(
+        <AuthProvider>
+            <LoginPage />
+        </AuthProvider>
+    );
+
+    //THEN
+    expect(screen.queryByText('loading')).not.toBeInTheDocument();
+});
