@@ -55,5 +55,5 @@ test('should display error message when email is invalid', async () => {
     ionFireEvent.click(submitButton);
 
     //THEN
-    expect(screen.queryByText('loading')).not.toBeInTheDocument();
+    expect(await screen.findByText('Invalid username')).toBeInTheDocument();
 });
