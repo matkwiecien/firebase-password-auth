@@ -22,7 +22,6 @@ test('should display loading indicator after submit sign in credentials until si
     ionFireEvent.ionChange(passwordInput, '')
     ionFireEvent.click(submitButton);
 
-
     //THEN
     expect(await screen.findByText('loading')).toBeInTheDocument();  
   });
