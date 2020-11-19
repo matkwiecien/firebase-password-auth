@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
                             onIonChange={(evt) => setFieldValue('password', evt.detail.value)}
                         />
                     </IonItem>
-                    <IonButton>Sign In</IonButton>
+                    <IonButton type='submit'>Sign In</IonButton>
                 </form>
             </IonContent>
             <IonLoading isOpen={busy} />
