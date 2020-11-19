@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { IonPage, IonContent, IonItem, IonInput, IonLabel, IonButton, IonLoading } from '@ionic/react';
 
 const LoginPage: React.FC = () => {
+    const [busy, setBusy] = useState(false);
+
     return (
         <IonPage>
             <IonContent>
                 <h1>Sign in</h1>
-                <form>
+                <form onSubmit={() => {
+                    setBusy(true)
+                }}>
                     <IonItem>
                         <IonLabel>Email: </IonLabel>
                         <IonInput
@@ -27,7 +31,7 @@ const LoginPage: React.FC = () => {
                     <IonButton>Sign In</IonButton>
                 </form>
             </IonContent>
-            <IonLoading isOpen />
+            <IonLoading isOpen={busy} />
         </IonPage>
     )
 }
