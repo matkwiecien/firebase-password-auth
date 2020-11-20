@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { ionFireEvent } from '@ionic/react-test-utils'
 import AuthProvider from 'Firebase/components/AuthProvider';
 import LoginPage from './LoginPage';
@@ -76,4 +76,25 @@ test('should display error message when password is wrond', async () => {
 
     //THEN
     expect(await screen.findByText('Wrong password')).toBeInTheDocument();
+});
+
+test('should hide loading indicator when submit is finished', async () => {
+    //GIVEN
+    render(
+        <AuthProvider>
+            <LoginPage />
+        </AuthProvider>
+    );
+    const emailInput = screen.getByTestId('signin-email-input');
+    const passwordInput = screen.getByTestId('signin-password-input');
+    const submitButton = screen.getByRole('button', { name: /Sign In/i });
+
+    //WHEN
+    ionFireEvent.ionChange(emailInput, 'valid@example.com')
+    ionFireEvent.ionChange(passwordInput, 'validPassword%1')
+    ionFireEvent.click(submitButton);
+
+    //THEN
+    const loadingIdicator = await screen.findByText('loading');
+    await waitForElementToBeRemoved(loadingIdicator);
 });
