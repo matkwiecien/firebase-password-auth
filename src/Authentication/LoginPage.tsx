@@ -28,6 +28,7 @@ const LoginPage: React.FC = () => {
                     setFieldError('email', 'Invalid username');
                 }
             }
+            setBusy(false);
 
         }
     });
