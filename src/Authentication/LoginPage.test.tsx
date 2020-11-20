@@ -57,3 +57,23 @@ test('should display error message when email is invalid', async () => {
     //THEN
     expect(await screen.findByText('Invalid username')).toBeInTheDocument();
 });
+
+test('should display error message when password is wrond', async () => {
+    //GIVEN
+    render(
+        <AuthProvider>
+            <LoginPage />
+        </AuthProvider>
+    );
+    const emailInput = screen.getByTestId('signin-email-input');
+    const passwordInput = screen.getByTestId('signin-password-input');
+    const submitButton = screen.getByRole('button', { name: /Sign In/i });
+
+    //WHEN
+    ionFireEvent.ionChange(emailInput, 'valid@example.com')
+    ionFireEvent.ionChange(passwordInput, 'invalidPassword%1')
+    ionFireEvent.click(submitButton);
+
+    //THEN
+    expect(await screen.findByText('Wrong password')).toBeInTheDocument();
+});
