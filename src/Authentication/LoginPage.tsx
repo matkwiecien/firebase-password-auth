@@ -20,7 +20,12 @@ const LoginPage: React.FC = () => {
                 await auth.signInWithEmailAndPassword(values.email, values.password);
             }
             catch (err) {
-                setFieldError('email', 'Inavalid username')
+                if (err.code === 'auth/wrong-password') {
+                    setFieldError('password', 'Wrong Password')
+                }
+                else {
+                    setFieldError('email', 'Invalid username');
+                }
             }
 
         }
@@ -46,6 +51,11 @@ const LoginPage: React.FC = () => {
                             onIonChange={(evt) => setFieldValue('email', evt.detail.value)}
                         />
                     </IonItem>
+                    {errors.password ?
+                        <IonItem color="danger">
+                            <IonLabel>Wrong password</IonLabel>
+                        </IonItem>
+                        : null}
                     <IonItem>
                         <IonLabel>Password: </IonLabel>
                         <IonInput
