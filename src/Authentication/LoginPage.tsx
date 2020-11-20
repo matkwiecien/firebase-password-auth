@@ -5,6 +5,7 @@ import { IonPage, IonContent, IonItem, IonInput, IonLabel, IonButton, IonLoading
 
 import { auth } from 'Firebase/modules/firebase';
 
+import ErrorMessage from 'Components/ErrorMessage';
 
 const LoginPage: React.FC = () => {
     const [busy, setBusy] = useState(false);
@@ -37,10 +38,9 @@ const LoginPage: React.FC = () => {
                 <h1>Sign in</h1>
                 <form onSubmit={handleSubmit}>
                     {errors.email ?
-                        <IonItem color="danger">
-                            <IonLabel>Invalid username</IonLabel>
-                        </IonItem>
-                        : null}
+                        <ErrorMessage>Invalid username</ErrorMessage>
+                        : null
+                    }
                     <IonItem>
                         <IonLabel>Email: </IonLabel>
                         <IonInput
@@ -52,10 +52,9 @@ const LoginPage: React.FC = () => {
                         />
                     </IonItem>
                     {errors.password ?
-                        <IonItem color="danger">
-                            <IonLabel>Wrong password</IonLabel>
-                        </IonItem>
-                        : null}
+                        <ErrorMessage>Wrong password</ErrorMessage>
+                        : null
+                    }
                     <IonItem>
                         <IonLabel>Password: </IonLabel>
                         <IonInput
