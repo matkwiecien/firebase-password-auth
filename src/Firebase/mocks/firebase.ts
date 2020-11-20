@@ -21,6 +21,8 @@ const firebase = {
             });
         },
         signInWithEmailAndPassword: async function(email: string, password: string) {
+            await new Promise(r => setTimeout(r, 100))
+
             if (email === 'invalid@example.com') {
                 throw new MockFirebaseError('auth/invalid-email', '')
             }
